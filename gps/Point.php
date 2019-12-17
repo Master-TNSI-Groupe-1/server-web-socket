@@ -70,7 +70,6 @@ class Point {
 						$n = -($A->getX() * $CD->getY() - $C->getX() * $CD->getY() - $CD->getX() * $A->getY() + $CD->getX() * $C->getY()) / $cross;
 						
 						if (0.000001 < $m && $m < 0.999999 && 0.000001 < $n && $n < 0.999999) {
-							echo $A->getX() . ';' . $A->getY() . ' / ' . $B->getX() . ';' . $B->getY() . ' / ' . $C->getX() . ';' . $C->getY() . ' / ' . $D->getX() . ';' . $D->getY() . "-- m : $m - n : $n<br/>";
 							return true;
 						}
 					}	
