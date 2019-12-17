@@ -37,7 +37,7 @@ class Point {
 	/**
 	 * Check if the sides of the polygon intersect
 	 * 
-	 * @param polygon	Vertexes of the polygon
+	 * @param Point[]	polygon		Vertexes of the polygon
 	 * 
 	 * @return boolean 	True if sides of the polygon intersect, false otherwise
 	 */
@@ -83,9 +83,9 @@ class Point {
 	/**
 	 * Construct the convex hull of a polygon
 	 * 
-	 * @param polygon	Vertexes of the polygon
+	 * @param Point[]	polygon		Vertexes of the polygon
 	 * 
-	 * @return array 	Convex hull of the polygon (array of points)
+	 * @return Point[] 	Convex hull of the polygon
 	 */
 	public static function monotoneChain($polygon) {
 		usort($polygon, function ($a, $b) {
@@ -121,7 +121,7 @@ class Point {
 	/**
 	 * Check if the point is inside a polygon
 	 * 
-	 * @param polygon	Vertexes of the polygon
+	 * @param Point[]	polygon		Vertexes of the polygon
 	 * 
 	 * @return boolean 	True if the point is inside the polygon, False otherwise
 	 */
@@ -185,20 +185,31 @@ class Point {
 
         return $b;
 	}
+
+	/**
+	 * Check if an area is valid (sides are not crossed) and correct it if needed
+	 * 
+	 * @param Point[] 	area	Area to check
+	 * 
+	 * @return Point[]	A valid area
+	 */
+	public static function correctArea($area) {
+		if (Point::checkIntersection($area)) {
+			return Point::monotoneChain($area);
+		}
+
+		return $area;
+	}
 	
 	/**
 	 * Check if a position is inside an area
 	 * 
-	 * @param position	Position of the point to check
-	 * @param area		Area to check
+	 * @param Point		position	Position to check
+	 * @param Point[]	area		Area to check
 	 * 
 	 * @return boolean 	True if the position is in the area, False otherwise
 	 */
 	public static function checkPosition($position, $area) {
-		if (Point::checkIntersection($area)) {
-			$area = Point::monotoneChain($area);
-		}
-
 		return $position->rayCasting($area);
 	}
 }
