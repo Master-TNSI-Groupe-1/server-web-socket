@@ -197,7 +197,6 @@ class Point {
 	 */
 	public static function checkPosition($position, $area) {
 		if (Point::checkIntersection($area)) {
-			echo "IN";
 			$area = Point::monotoneChain($area);
 		}
 
