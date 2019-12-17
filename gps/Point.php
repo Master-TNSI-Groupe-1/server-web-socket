@@ -69,7 +69,7 @@ class Point {
 						$m = -(-$AB->getX() * $A->getY() + $AB->getX() * $C->getY() + $AB->getY() * $A->getX() - $AB->getY() * $C->getX()) / $cross;
 						$n = -($A->getX() * $CD->getY() - $C->getX() * $CD->getY() - $CD->getX() * $A->getY() + $CD->getX() * $C->getY()) / $cross;
 						
-						if (0 < $m && $m < 1 && 0 < $n && $n < 1) {
+						if (0.000001 < $m && $m < 0.999999 && 0.000001 < $n && $n < 0.999999) {
 							return true;
 						}
 					}	
